@@ -192,20 +192,35 @@ contactForm.addEventListener('submit', function (e) {
     return;
   }
 
-  // Swap button text while "sending"
+  // Swap button text while sending
   var submitBtn = contactForm.querySelector('[type="submit"]');
   submitBtn.disabled = true;
   submitBtn.textContent = 'Sending…';
 
-  // Simulated success — swap this setTimeout for a real
-  // fetch() call to Formspree, EmailJS, etc. when ready
-  setTimeout(function () {
-    formStatus.textContent = "Message sent! I'll get back to you soon.";
-    formStatus.classList.add('success');
-    contactForm.reset();
+  // Send to Formspree
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: new FormData(contactForm),
+    headers: { 'Accept': 'application/json' }
+  })
+  .then(function (response) {
+    if (response.ok) {
+      formStatus.textContent = "Message sent! I'll get back to you soon.";
+      formStatus.classList.add('success');
+      contactForm.reset();
+    } else {
+      formStatus.textContent = 'Something went wrong. Please email me directly.';
+      formStatus.classList.add('error');
+    }
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send Message';
-  }, 1000);
+  })
+  .catch(function () {
+    formStatus.textContent = 'Something went wrong. Please email me directly.';
+    formStatus.classList.add('error');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send Message';
+  });
 });
 
 // remove error highlight as user types
