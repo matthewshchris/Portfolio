@@ -281,6 +281,109 @@ whcTabs.forEach(function (tab) {
   });
 });
 
+// --- Masterwerks Gallery ---
+var mwGallery      = document.getElementById('mwGallery');
+var openMwBtn      = document.getElementById('openMwGallery');
+var mwGalleryClose = document.getElementById('mwGalleryClose');
+
+openMwBtn.addEventListener('click', function () {
+  mwGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeMwGallery() {
+  mwGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+mwGalleryClose.addEventListener('click', closeMwGallery);
+mwGallery.addEventListener('click', function (e) { if (e.target === mwGallery) closeMwGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && mwGallery.classList.contains('open')) closeMwGallery();
+});
+
+// clicking images in mwGallery opens the main lightbox
+mwGallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img = e.target;
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = img.getAttribute('data-title') || '';
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt;
+    lightboxInner.appendChild(fullImg);
+    lightbox.classList.add('open');
+  }
+});
+
+
+// --- InfernoAds Video Gallery ---
+var iaGallery      = document.getElementById('iaGallery');
+var openIaBtn      = document.getElementById('openIaGallery');
+var iaGalleryClose = document.getElementById('iaGalleryClose');
+
+openIaBtn.addEventListener('click', function () {
+  iaGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeIaGallery() {
+  iaGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+iaGalleryClose.addEventListener('click', closeIaGallery);
+iaGallery.addEventListener('click', function (e) { if (e.target === iaGallery) closeIaGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && iaGallery.classList.contains('open')) closeIaGallery();
+});
+
+
+// --- SMG Video Gallery ---
+var smgGallery      = document.getElementById('smgGallery');
+var openSmgBtn      = document.getElementById('openSmgGallery');
+var smgGalleryClose = document.getElementById('smgGalleryClose');
+
+openSmgBtn.addEventListener('click', function () {
+  smgGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeSmgGallery() {
+  smgGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+smgGalleryClose.addEventListener('click', closeSmgGallery);
+smgGallery.addEventListener('click', function (e) { if (e.target === smgGallery) closeSmgGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && smgGallery.classList.contains('open')) closeSmgGallery();
+});
+
+
+// --- Video tiles open the main lightbox ---
+document.addEventListener('click', function (e) {
+  var tile = e.target.closest('.vid-tile');
+  if (tile) {
+    var src   = tile.dataset.src;
+    var title = tile.dataset.title || '';
+
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = title;
+
+    var vid = document.createElement('video');
+    vid.src = src;
+    vid.controls = true;
+    vid.autoplay = true;
+    vid.style.outline = 'none';
+    lightboxInner.appendChild(vid);
+
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+});
+
+
 // clicking an image in the gallery opens it in the main lightbox
 whcGallery.addEventListener('click', function (e) {
   if (e.target.tagName === 'IMG') {
