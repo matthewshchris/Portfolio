@@ -281,6 +281,111 @@ whcTabs.forEach(function (tab) {
   });
 });
 
+// --- Angel Athletica Gallery ---
+var aaGallery      = document.getElementById('aaGallery');
+var openAaBtn      = document.getElementById('openAaGallery');
+var aaGalleryClose = document.getElementById('aaGalleryClose');
+
+openAaBtn.addEventListener('click', function () {
+  aaGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeAaGallery() {
+  aaGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+aaGalleryClose.addEventListener('click', closeAaGallery);
+aaGallery.addEventListener('click', function (e) { if (e.target === aaGallery) closeAaGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && aaGallery.classList.contains('open')) closeAaGallery();
+});
+
+aaGallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img = e.target;
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = img.getAttribute('data-title') || '';
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt;
+    lightboxInner.appendChild(fullImg);
+    lightbox.classList.add('open');
+  }
+});
+
+
+// --- Happy Camper Gallery ---
+var hcGallery      = document.getElementById('hcGallery');
+var openHcBtn      = document.getElementById('openHcGallery');
+var hcGalleryClose = document.getElementById('hcGalleryClose');
+
+openHcBtn.addEventListener('click', function () {
+  hcGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeHcGallery() {
+  hcGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+hcGalleryClose.addEventListener('click', closeHcGallery);
+hcGallery.addEventListener('click', function (e) { if (e.target === hcGallery) closeHcGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && hcGallery.classList.contains('open')) closeHcGallery();
+});
+
+hcGallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img = e.target;
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = img.getAttribute('data-title') || '';
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt;
+    lightboxInner.appendChild(fullImg);
+    lightbox.classList.add('open');
+  }
+});
+
+
+// --- Customer2.AI Gallery ---
+var c2Gallery      = document.getElementById('c2Gallery');
+var openC2Btn      = document.getElementById('openC2Gallery');
+var c2GalleryClose = document.getElementById('c2GalleryClose');
+
+openC2Btn.addEventListener('click', function () {
+  c2Gallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeC2Gallery() {
+  c2Gallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+c2GalleryClose.addEventListener('click', closeC2Gallery);
+c2Gallery.addEventListener('click', function (e) { if (e.target === c2Gallery) closeC2Gallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && c2Gallery.classList.contains('open')) closeC2Gallery();
+});
+
+c2Gallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img = e.target;
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = img.getAttribute('data-title') || '';
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt;
+    lightboxInner.appendChild(fullImg);
+    lightbox.classList.add('open');
+  }
+});
+
+
 // --- Masterwerks Gallery ---
 var mwGallery      = document.getElementById('mwGallery');
 var openMwBtn      = document.getElementById('openMwGallery');
@@ -317,7 +422,7 @@ mwGallery.addEventListener('click', function (e) {
 });
 
 
-// --- InfernoAds Video Gallery ---
+// --- InfernoAds Gallery ---
 var iaGallery      = document.getElementById('iaGallery');
 var openIaBtn      = document.getElementById('openIaGallery');
 var iaGalleryClose = document.getElementById('iaGalleryClose');
@@ -339,7 +444,7 @@ document.addEventListener('keydown', function (e) {
 });
 
 
-// --- SMG Video Gallery ---
+// --- SMG Gallery ---
 var smgGallery      = document.getElementById('smgGallery');
 var openSmgBtn      = document.getElementById('openSmgGallery');
 var smgGalleryClose = document.getElementById('smgGalleryClose');
