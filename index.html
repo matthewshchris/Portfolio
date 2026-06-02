@@ -283,18 +283,18 @@
         <!-- Wholesale Health Club -->
         <div class="work-card fade-in" data-category="website">
           <div class="work-card-media">
-            <img src="assets/images/WholesaleHealthClub/HealthyLivingProducts-TotalLossWeightControl.jpg" alt="Wholesale Health Club" />
+            <img src="assets/images/WholesaleHealthClub/Gummies-HealthyLivingProducts-TotalLossWeightControl.jpg" alt="Wholesale Health Club" />
             <div class="work-card-overlay">
-              <button class="overlay-btn" data-type="link" data-src="https://wholesalehealthclub.com/" data-title="Wholesale Health Club">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Visit Site
+              <button class="overlay-btn" id="openWhcGallery">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                View Gallery
               </button>
             </div>
           </div>
           <div class="work-card-info">
             <span class="work-tag">E-Commerce</span>
             <h3>Wholesale Health Club</h3>
-            <p>E-commerce site for a health supplement retailer, including product pages, imagery, and brand-consistent design.</p>
+            <p>Product imagery and design across multiple supplement brands. <a href="https://wholesalehealthclub.com/" target="_blank" rel="noopener" class="card-site-link">Visit site &rarr;</a></p>
           </div>
         </div>
 
@@ -415,6 +415,172 @@
       </div>
     </div>
   </footer>
+
+  <!-- ==================== WHC GALLERY MODAL ==================== -->
+  <div class="whc-gallery" id="whcGallery">
+    <div class="whc-gallery-box">
+
+      <div class="whc-gallery-head">
+        <div>
+          <p class="section-label">E-Commerce &mdash; Wholesale Health Club</p>
+          <h2>Product Gallery</h2>
+          <p class="whc-subtitle">Design work across gummies, skin care, and supplements</p>
+        </div>
+        <button class="whc-close" id="whcGalleryClose">&times;</button>
+      </div>
+
+      <div class="whc-tabs">
+        <button class="whc-tab active" data-tab="gummies">Gummies</button>
+        <button class="whc-tab" data-tab="skin">Skin Care</button>
+        <button class="whc-tab" data-tab="supplements">Supplements</button>
+      </div>
+
+      <div class="whc-panels">
+
+        <!-- ===== GUMMIES ===== -->
+        <div class="whc-panel active" id="tab-gummies">
+
+          <div class="whc-brand">
+            <h3>Healthy Living Products</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Gummies-HealthyLivingProducts-JointRelief.png" alt="Joint Relief" data-title="Healthy Living Products – Joint Relief" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-HealthyLivingProducts-KetosisACV.jpg" alt="Ketosis ACV" data-title="Healthy Living Products – Ketosis ACV" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-HealthyLivingProducts-TotalLossWeightControl.jpg" alt="Total Loss Weight Control" data-title="Healthy Living Products – Total Loss Weight Control" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-HealthyLivingProducts-Z-CompleteSleep.jpg" alt="Complete Sleep" data-title="Healthy Living Products – Complete Sleep" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Sapphire Natural</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Gummies-SapphireNatural-AlphaDriveMaleEnhancement.png" alt="Alpha Drive Male Enhancement" data-title="Sapphire Natural – Alpha Drive Male Enhancement" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-SapphireNatural-AlphaDriveRX.jpg" alt="Alpha Drive RX" data-title="Sapphire Natural – Alpha Drive RX" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-SapphireNatural-SleepSupport.jpg" alt="Sleep Support" data-title="Sapphire Natural – Sleep Support" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-SapphireNatural-SuperKetosis.png" alt="Super Ketosis" data-title="Sapphire Natural – Super Ketosis" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>The Complete Life</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Gummies-TheCompleteLife-PurKetoACV.jpg" alt="Pur Keto ACV" data-title="The Complete Life – Pur Keto ACV" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Total Life Nutrition</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Gummies-TotalLifeNutrition-Melatonin.jpg" alt="Melatonin" data-title="Total Life Nutrition – Melatonin" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Trubody</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Gummies-Trubody-GoACVKeto.jpg" alt="Go ACV Keto" data-title="Trubody – Go ACV Keto" />
+              <img src="assets/images/WholesaleHealthClub/Gummies-Trubody-GoImmunitySupport.png" alt="Go Immunity Support" data-title="Trubody – Go Immunity Support" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===== SKIN CARE ===== -->
+        <div class="whc-panel" id="tab-skin">
+
+          <div class="whc-brand">
+            <h3>Blue Forrest Beauty</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Skin-BlueForrestBeauty-AthenasVitaminCSerum.jpg" alt="Athena's Vitamin C Serum" data-title="Blue Forrest Beauty – Athena's Vitamin C Serum" />
+              <img src="assets/images/WholesaleHealthClub/Skin-BlueForrestBeauty-NectarOfTheGods-AntiAgingCream.png" alt="Nectar of the Gods Anti Aging Cream" data-title="Blue Forrest Beauty – Nectar of the Gods Anti Aging Cream" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Emma Bean</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Skin-EmmaBean-DeloreanAntiAgingCream.png" alt="Delorean Anti Aging Cream" data-title="Emma Bean – Delorean Anti Aging Cream" />
+              <img src="assets/images/WholesaleHealthClub/Skin-EmmaBean-Super-C-VitaminCSerum.jpg" alt="Super C Vitamin C Serum" data-title="Emma Bean – Super C Vitamin C Serum" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Justified Laboratories</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Skin-JustifiedLaboratories-Anti-WrinkleCream.webp" alt="Anti-Wrinkle Cream" data-title="Justified Laboratories – Anti-Wrinkle Cream" />
+              <img src="assets/images/WholesaleHealthClub/Skin-JustifiesLaboratories-Under-EyeSerum.webp" alt="Under Eye Serum" data-title="Justified Laboratories – Under Eye Serum" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Sapphire Natural</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Skin-SapphireNatural-Vitamin-CSerum.jpg" alt="Vitamin C Serum" data-title="Sapphire Natural – Vitamin C Serum" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>The Complete Life</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Skin-AntiAging-TheCompleteLife.png" alt="Anti Aging" data-title="The Complete Life – Anti Aging" />
+              <img src="assets/images/WholesaleHealthClub/Skin-TheCompleteLife-VitaminCSuperCSerum.png" alt="Vitamin C Super C Serum" data-title="The Complete Life – Vitamin C Super C Serum" />
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ===== SUPPLEMENTS ===== -->
+        <div class="whc-panel" id="tab-supplements">
+
+          <div class="whc-brand">
+            <h3>Healthy Living Products</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Supplement-HealthyLivingProducts-Immuboost.png" alt="Immuboost" data-title="Healthy Living Products – Immuboost" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-HealthyLivingProducts-TotalMensHealth.jpg" alt="Total Men's Health" data-title="Healthy Living Products – Total Men's Health" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Sapphire Natural</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Supplement-SapphireNatural-DailyMultivitamin.png" alt="Daily Multivitamin" data-title="Sapphire Natural – Daily Multivitamin" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-SapphireNatural-LiverDetox.jpg" alt="Liver Detox" data-title="Sapphire Natural – Liver Detox" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-SapphireNatural-NeuroTechIQ.jpg" alt="Neuro Tech IQ" data-title="Sapphire Natural – Neuro Tech IQ" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-SapphireNatural-SuperKetoBoost.png" alt="Super Keto Boost" data-title="Sapphire Natural – Super Keto Boost" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>The Complete Life</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Supplement-TheCompleteLife-CompleteBloodSugarSupport.jpg" alt="Complete Blood Sugar Support" data-title="The Complete Life – Complete Blood Sugar Support" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TheCompleteLife-LongLife.jpg" alt="Long Life" data-title="The Complete Life – Long Life" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TheCompleteLife-LongLifeProbiotic.png" alt="Long Life Probiotic" data-title="The Complete Life – Long Life Probiotic" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TheCompleteLife-PurBodyWeightloss.jpg" alt="Pur Body Weight Loss" data-title="The Complete Life – Pur Body Weight Loss" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TheCompleteLife-SynapticXR.jpg" alt="Synaptic XR" data-title="The Complete Life – Synaptic XR" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Total Life Nutrition</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Supplement-TotalLifeNutrition-BloodPressureSupport.png" alt="Blood Pressure Support" data-title="Total Life Nutrition – Blood Pressure Support" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TotalLifeNutrition-DailyMultivitamin.png" alt="Daily Multivitamin" data-title="Total Life Nutrition – Daily Multivitamin" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TotalLifeNutrition-JointSupport.png" alt="Joint Support" data-title="Total Life Nutrition – Joint Support" />
+              <img src="assets/images/WholesaleHealthClub/Supplement-TotalLifeNutrition-TotalCleanseFormula.png" alt="Total Cleanse Formula" data-title="Total Life Nutrition – Total Cleanse Formula" />
+            </div>
+          </div>
+
+          <div class="whc-brand">
+            <h3>Trubody Supplements</h3>
+            <div class="whc-grid">
+              <img src="assets/images/WholesaleHealthClub/Supplement-TrubodySupplements-JointHealthSupport.jpg" alt="Joint Health Support" data-title="Trubody Supplements – Joint Health Support" />
+            </div>
+          </div>
+
+        </div>
+      </div><!-- /whc-panels -->
+    </div><!-- /whc-gallery-box -->
+  </div>
 
   <!-- ==================== LIGHTBOX ==================== -->
   <div class="lightbox" id="lightbox">

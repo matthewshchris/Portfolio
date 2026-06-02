@@ -233,3 +233,68 @@ contactForm.querySelectorAll('input, textarea').forEach(function (field) {
 
 // --- Footer year ---
 document.getElementById('footerYear').textContent = new Date().getFullYear();
+
+
+// --- WHC Gallery Modal ---
+var whcGallery      = document.getElementById('whcGallery');
+var openWhcBtn      = document.getElementById('openWhcGallery');
+var whcGalleryClose = document.getElementById('whcGalleryClose');
+var whcTabs         = document.querySelectorAll('.whc-tab');
+var whcPanels       = document.querySelectorAll('.whc-panel');
+
+// open the gallery
+openWhcBtn.addEventListener('click', function () {
+  whcGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+// close the gallery
+function closeWhcGallery() {
+  whcGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+whcGalleryClose.addEventListener('click', closeWhcGallery);
+
+// click outside the box to close
+whcGallery.addEventListener('click', function (e) {
+  if (e.target === whcGallery) {
+    closeWhcGallery();
+  }
+});
+
+// Escape key closes it
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && whcGallery.classList.contains('open')) {
+    closeWhcGallery();
+  }
+});
+
+// tab switching
+whcTabs.forEach(function (tab) {
+  tab.addEventListener('click', function () {
+    whcTabs.forEach(function (t) { t.classList.remove('active'); });
+    whcPanels.forEach(function (p) { p.classList.remove('active'); });
+
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+// clicking an image in the gallery opens it in the main lightbox
+whcGallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img   = e.target;
+    var title = img.getAttribute('data-title') || img.getAttribute('alt') || '';
+
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = title;
+
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = title;
+    lightboxInner.appendChild(fullImg);
+
+    lightbox.classList.add('open');
+  }
+});
