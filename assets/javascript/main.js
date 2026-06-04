@@ -66,7 +66,8 @@ filterBtns.forEach(function (btn) {
     var selected = btn.getAttribute('data-filter');
 
     workCards.forEach(function (card) {
-      if (selected === 'all' || card.getAttribute('data-category') === selected) {
+      var cats = (card.getAttribute('data-category') || '').split(' ');
+      if (selected === 'all' || cats.indexOf(selected) !== -1) {
         card.classList.remove('hidden');
       } else {
         card.classList.add('hidden');
@@ -485,6 +486,41 @@ document.addEventListener('click', function (e) {
 
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
+  }
+});
+
+
+// --- Personal Illustrations Gallery ---
+var illGallery      = document.getElementById('illGallery');
+var openIllBtn      = document.getElementById('openIllGallery');
+var illGalleryClose = document.getElementById('illGalleryClose');
+
+openIllBtn.addEventListener('click', function () {
+  illGallery.classList.add('open');
+  document.body.style.overflow = 'hidden';
+});
+
+function closeIllGallery() {
+  illGallery.classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+illGalleryClose.addEventListener('click', closeIllGallery);
+illGallery.addEventListener('click', function (e) { if (e.target === illGallery) closeIllGallery(); });
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && illGallery.classList.contains('open')) closeIllGallery();
+});
+
+illGallery.addEventListener('click', function (e) {
+  if (e.target.tagName === 'IMG') {
+    var img = e.target;
+    lightboxInner.innerHTML = '';
+    lightboxCaption.textContent = img.getAttribute('data-title') || '';
+    var fullImg = document.createElement('img');
+    fullImg.src = img.src;
+    fullImg.alt = img.alt;
+    lightboxInner.appendChild(fullImg);
+    lightbox.classList.add('open');
   }
 });
 
