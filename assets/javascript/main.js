@@ -78,12 +78,42 @@ filterBtns.forEach(function (btn) {
 
 
 // --- Lightbox ---
-var lightbox     = document.getElementById('lightbox');
+var lightbox        = document.getElementById('lightbox');
 var lightboxInner   = document.getElementById('lightboxInner');
 var lightboxCaption = document.getElementById('lightboxCaption');
 var lightboxClose   = document.getElementById('lightboxClose');
+var lightboxPrev    = document.getElementById('lightboxPrev');
+var lightboxNext    = document.getElementById('lightboxNext');
+
+// current gallery image set for arrow navigation
+var lbImages = [];
+var lbIndex  = 0;
+
+function renderLbImage() {
+  var item = lbImages[lbIndex];
+  lightboxInner.innerHTML = '';
+  lightboxCaption.textContent = item.title || '';
+  var img = document.createElement('img');
+  img.src   = item.src;
+  img.alt   = item.title || '';
+  lightboxInner.appendChild(img);
+  var single = lbImages.length <= 1;
+  lightboxPrev.classList.toggle('hidden', single);
+  lightboxNext.classList.toggle('hidden', single);
+}
+
+function openGalleryImage(items, idx) {
+  lbImages = items;
+  lbIndex  = idx;
+  renderLbImage();
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
 
 function openLightbox(type, src, title) {
+  lbImages = [];
+  lightboxPrev.classList.add('hidden');
+  lightboxNext.classList.add('hidden');
   lightboxInner.innerHTML = '';
   lightboxCaption.textContent = title || '';
 
@@ -105,7 +135,6 @@ function openLightbox(type, src, title) {
     document.body.style.overflow = 'hidden';
 
   } else if (type === 'link') {
-    // websites just open in a new tab
     window.open(src, '_blank', 'noopener,noreferrer');
   }
 }
@@ -114,7 +143,6 @@ function closeLightbox() {
   lightbox.classList.remove('open');
   document.body.style.overflow = '';
 
-  // stop video if playing
   var vid = lightboxInner.querySelector('video');
   if (vid) { vid.pause(); }
 
@@ -133,19 +161,26 @@ document.addEventListener('click', function (e) {
 });
 
 lightboxClose.addEventListener('click', closeLightbox);
+lightboxPrev.addEventListener('click', function () {
+  lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length;
+  renderLbImage();
+});
+lightboxNext.addEventListener('click', function () {
+  lbIndex = (lbIndex + 1) % lbImages.length;
+  renderLbImage();
+});
 
 // click outside the image/video to close
 lightbox.addEventListener('click', function (e) {
-  if (e.target === lightbox) {
-    closeLightbox();
-  }
+  if (e.target === lightbox) { closeLightbox(); }
 });
 
-// press Escape to close
+// keyboard: Escape closes, arrows navigate
 document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && lightbox.classList.contains('open')) {
-    closeLightbox();
-  }
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') { closeLightbox(); }
+  if (e.key === 'ArrowLeft'  && lbImages.length > 1) { lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; renderLbImage(); }
+  if (e.key === 'ArrowRight' && lbImages.length > 1) { lbIndex = (lbIndex + 1) % lbImages.length; renderLbImage(); }
 });
 
 
@@ -303,18 +338,6 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && aaGallery.classList.contains('open')) closeAaGallery();
 });
 
-aaGallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img = e.target;
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = img.getAttribute('data-title') || '';
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = img.alt;
-    lightboxInner.appendChild(fullImg);
-    lightbox.classList.add('open');
-  }
-});
 
 
 // --- Happy Camper Gallery ---
@@ -338,18 +361,6 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && hcGallery.classList.contains('open')) closeHcGallery();
 });
 
-hcGallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img = e.target;
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = img.getAttribute('data-title') || '';
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = img.alt;
-    lightboxInner.appendChild(fullImg);
-    lightbox.classList.add('open');
-  }
-});
 
 
 // --- Customer2.AI Gallery ---
@@ -373,18 +384,6 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && c2Gallery.classList.contains('open')) closeC2Gallery();
 });
 
-c2Gallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img = e.target;
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = img.getAttribute('data-title') || '';
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = img.alt;
-    lightboxInner.appendChild(fullImg);
-    lightbox.classList.add('open');
-  }
-});
 
 
 // --- Masterwerks Gallery ---
@@ -408,19 +407,6 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && mwGallery.classList.contains('open')) closeMwGallery();
 });
 
-// clicking images in mwGallery opens the main lightbox
-mwGallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img = e.target;
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = img.getAttribute('data-title') || '';
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = img.alt;
-    lightboxInner.appendChild(fullImg);
-    lightbox.classList.add('open');
-  }
-});
 
 
 // --- InfernoAds Gallery ---
@@ -470,23 +456,7 @@ document.addEventListener('keydown', function (e) {
 // --- Video tiles open the main lightbox ---
 document.addEventListener('click', function (e) {
   var tile = e.target.closest('.vid-tile');
-  if (tile) {
-    var src   = tile.dataset.src;
-    var title = tile.dataset.title || '';
-
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = title;
-
-    var vid = document.createElement('video');
-    vid.src = src;
-    vid.controls = true;
-    vid.autoplay = true;
-    vid.style.outline = 'none';
-    lightboxInner.appendChild(vid);
-
-    lightbox.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  }
+  if (tile) { openLightbox('video', tile.dataset.src, tile.dataset.title || ''); }
 });
 
 
@@ -511,34 +481,15 @@ document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape' && illGallery.classList.contains('open')) closeIllGallery();
 });
 
-illGallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img = e.target;
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = img.getAttribute('data-title') || '';
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = img.alt;
-    lightboxInner.appendChild(fullImg);
-    lightbox.classList.add('open');
-  }
-});
 
 
-// clicking an image in the gallery opens it in the main lightbox
-whcGallery.addEventListener('click', function (e) {
-  if (e.target.tagName === 'IMG') {
-    var img   = e.target;
-    var title = img.getAttribute('data-title') || img.getAttribute('alt') || '';
-
-    lightboxInner.innerHTML = '';
-    lightboxCaption.textContent = title;
-
-    var fullImg = document.createElement('img');
-    fullImg.src = img.src;
-    fullImg.alt = title;
-    lightboxInner.appendChild(fullImg);
-
-    lightbox.classList.add('open');
-  }
+// single delegated handler — clicking any image inside a .whc-grid opens the lightbox with arrow navigation
+document.addEventListener('click', function (e) {
+  var img = e.target;
+  if (img.tagName !== 'IMG' || !img.closest('.whc-grid')) return;
+  var allImgs = Array.from(img.closest('.whc-grid').querySelectorAll('img'));
+  openGalleryImage(
+    allImgs.map(function (i) { return { src: i.src, title: i.getAttribute('data-title') || i.alt || '' }; }),
+    allImgs.indexOf(img)
+  );
 });
