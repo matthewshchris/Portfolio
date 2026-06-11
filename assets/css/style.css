@@ -864,6 +864,12 @@ ul { list-style: none; }
   max-height: 80vh;
   border-radius: var(--radius);
 }
+.lightbox-inner iframe {
+  width: min(90vw, 960px);
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: var(--radius);
+}
 
 .lightbox-caption {
   margin-top: 1rem;

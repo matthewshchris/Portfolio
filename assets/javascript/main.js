@@ -141,6 +141,15 @@ function openLightbox(type, src, title) {
       vid.muted = false;
     }
 
+  } else if (type === 'youtube') {
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture';
+    iframe.allowFullscreen = true;
+    lightboxInner.appendChild(iframe);
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+
   } else if (type === 'link') {
     window.open(src, '_blank', 'noopener,noreferrer');
   }
@@ -463,7 +472,11 @@ document.addEventListener('keydown', function (e) {
 // --- Video tiles open the main lightbox ---
 document.addEventListener('click', function (e) {
   var tile = e.target.closest('.vid-tile');
-  if (tile) { openLightbox('video', tile.dataset.src, tile.dataset.title || ''); }
+  if (tile) {
+    var src  = tile.dataset.src;
+    var type = src.indexOf('youtube.com') !== -1 ? 'youtube' : 'video';
+    openLightbox(type, src, tile.dataset.title || '');
+  }
 });
 
 
