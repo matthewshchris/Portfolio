@@ -129,12 +129,17 @@ function openLightbox(type, src, title) {
     var vid = document.createElement('video');
     vid.src = src;
     vid.controls = true;
+    vid.muted = true;
     vid.style.outline = 'none';
     lightboxInner.appendChild(vid);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
     var playPromise = vid.play();
-    if (playPromise !== undefined) { playPromise.catch(function () {}); }
+    if (playPromise !== undefined) {
+      playPromise.then(function () { vid.muted = false; }).catch(function () { vid.muted = false; });
+    } else {
+      vid.muted = false;
+    }
 
   } else if (type === 'link') {
     window.open(src, '_blank', 'noopener,noreferrer');
