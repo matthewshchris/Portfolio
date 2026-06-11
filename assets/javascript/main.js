@@ -129,10 +129,12 @@ function openLightbox(type, src, title) {
     var vid = document.createElement('video');
     vid.src = src;
     vid.controls = true;
-    vid.autoplay = true;
+    vid.style.outline = 'none';
     lightboxInner.appendChild(vid);
     lightbox.classList.add('open');
     document.body.style.overflow = 'hidden';
+    var playPromise = vid.play();
+    if (playPromise !== undefined) { playPromise.catch(function () {}); }
 
   } else if (type === 'link') {
     window.open(src, '_blank', 'noopener,noreferrer');
